@@ -1,4 +1,4 @@
-![Screenshot from 2023-09-10 00-27-02](https://github.com/dhruvsh-1729/adfm-aero-assgns/assets/78747805/a5528ba8-b3f1-4a55-87de-877e114b248f)Setup
+Setup
 
 1) Please install the numpy and matplotlib libraries to run the code in python or python3 using 
 the commands
