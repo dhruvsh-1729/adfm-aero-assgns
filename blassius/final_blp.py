@@ -75,7 +75,10 @@ while err > err_threshold:
     m2 = g2_values[-1]
     err = abs(m2 - 1)
     count += 1
-    print(p2, m2, err, count)
+    print("Initial guess for f''(0): ",p2,
+          "Value of f'(eta_max): ",m2,
+           "Error :", err,
+            "No of iterations: ",count)
 
 # Calculate boundary layer parameters using the trapezoidal rule
 h = eta_values[1] - eta_values[0]

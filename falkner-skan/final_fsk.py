@@ -22,13 +22,24 @@ def runge_kutta_4(func, y0, t, m):
 
     return y
 
+# Trapezoidal Rule for Numerical Integration
+def trapezoidal_rule(y, h):
+    n = len(y)
+    integral = 0.5 * (y[0] + y[n - 1])  # Add the first and last terms
+
+    for i in range(1, n - 1):
+        integral += y[i]
+    
+    integral *= h
+    return integral
+
 # Set up numerical parameters
 eta_max = 10  # Maximum value of the dimensionless variable eta
 num_points = 1000  # Number of points for integration
 eta_values = np.linspace(0, eta_max, num_points) # Vector for incremental values of eta
 
 # Define the range of parameter m to iterate over
-param_range = 0.07
+param_range = 0.06
 m_values = np.linspace(-param_range, param_range, int(2*param_range / 0.01) + 1)
 
 # Initialize arrays to store results
@@ -90,12 +101,13 @@ for m in m_values:
 
         err = abs(m2-1)
         count += 1
-
+    
+    h = eta_values[1] - eta_values[0]
     # Calculate displacement thickness (delta)
-    delta = np.trapz(1 - g2_values, eta_values)
+    delta = trapezoidal_rule(1 - g2_values, h)
 
     # Calculate momentum thickness (theta)
-    theta = np.trapz(g2_values * (1 - g2_values), eta_values)
+    theta = trapezoidal_rule(g2_values * (1 - g2_values), h)
 
     # Calculate shape factor (H)
     H = delta / theta
